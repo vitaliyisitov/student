@@ -1,10 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://www.gstatic.com/charts/loader.js"></script>
+<head>
+  <style>
+    /* Общие стили */
+    #myIframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+    }
 
-  <div>
-<iframe frameborder="0" src="https://datalens.yandex/j0udb9nag6hs8?_embedded=1"></iframe>
-  </div>
+    /* Стили для светлой темы */
+    @media (prefers-color-scheme: light) {
+      body {
+        background-color: #fff;
+        color: #000;
+      }
+    }
+
+    /* Стили для темной темы */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #333;
+        color: #fff;
+      }
+    }
+  </style>
+</head>
+<body>
+  <iframe id="myIframe" frameborder="0"></iframe>
+
+  <script>
+    // Получаем ссылку на iframe
+    var iframe = document.getElementById('myIframe');
+
+    // Определяем текущую тему
+    var isDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    // Формируем URL с учетом темы
+    var iframeUrl = 'https://datalens.yandex/j0udb9nag6hs8?_embedded=1' + (isDarkTheme ? '&_theme=dark' : '');
+
+    // Устанавливаем URL iframe
+    iframe.src = iframeUrl;
+  </script>
+</body>
 
 </html>
